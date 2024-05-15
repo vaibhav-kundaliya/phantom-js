@@ -4,7 +4,6 @@ const pdf = require('html-pdf');
 const path = require('path');
 
 const app = express();
-const port = 3500;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,11 +27,11 @@ app.post('/', (req, res) => {
     pdf.create(htmlContent, pdfOptions).toFile(path.join(__dirname, 'test.pdf'), (err, result) => {
         if (err) {
             return res.status(500).send({ error: 'Failed to generate PDF' });
-        }
+        }   
         res.send({ filePath: result.filename });
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+app.listen(3000, () => {
+    console.log(`Server is running at http://localhost:3000`);
 });
