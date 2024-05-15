@@ -26,7 +26,8 @@ app.post('/', (req, res) => {
 
     pdf.create(htmlContent, pdfOptions).toFile(path.join(__dirname, 'test.pdf'), (err, result) => {
         if (err) {
-            return res.status(500).send({ error: 'Failed to generate PDF' });
+            console.error(err)
+            return res.status(500).send({ error: 'Failed to generate PDF'+err });
         }   
         res.send({ filePath: result.filename });
     });
